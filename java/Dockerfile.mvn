@@ -1,0 +1,17 @@
+FROM openjdk:8-jdk-alpine
+
+ARG MAVEN_VERSION="3.6.1"
+ARG USER_HOME_DIR="/root"
+
+ENV MAVEN_HOME /opt/maven
+ENV MAVEN_CONFIG "${USER_HOME_DIR}/.m2"
+
+# Install Maven
+RUN wget -q http://www-eu.apache.org/dist/maven/maven-3/${MAVEN_VERSION}/binaries/apache-maven-${MAVEN_VERSION}-bin.tar.gz && \
+    mkdir /opt/maven && \
+    tar xzf apache-maven-${MAVEN_VERSION}-bin.tar.gz -C /opt/maven && \
+    rm apache-maven-${MAVEN_VERSION}-bin.tar.gz && \
+    ln -s /opt/maven/apache-maven-${MAVEN_VERSION}/bin/mvn /usr/bin/mvn && \
+    mkdir -p ${MAVEN_CONFIG} ${MAVEN_CONFIG}/repository
+
+CMD ["/usr/bin/mvn"]
