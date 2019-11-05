@@ -2,7 +2,7 @@ FROM alpine
 
 # httptool ab wrk c1000k(test socket)
 RUN apk update && \
-    apk add vim iproute2 curl apache2-utils wrk make gcc libc-dev busybox-extras && \
+    apk add vim iproute2 curl apache2-utils wrk make gcc libc-dev busybox-extras bind-tools tcpdump && \
     wget --no-check-certificate https://github.com/ideawu/c1000k/archive/master.zip && \
     unzip master.zip && \ 
     cd c1000k-master && \
