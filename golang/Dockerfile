@@ -3,7 +3,7 @@ FROM centos:7
 RUN yum -y update && yum -y install git make wget gcc && \
     yum clean all
 
-ENV GOLANG_VERSION 1.12
+ENV GOLANG_VERSION 1.15
 RUN mkdir -p /go && chmod -R 777 /go && \
     wget https://golang.org/dl/go$GOLANG_VERSION.linux-amd64.tar.gz && \
     tar -C /usr/local -xzf go$GOLANG_VERSION.linux-amd64.tar.gz && \
